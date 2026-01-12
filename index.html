@@ -28,10 +28,11 @@
     /* ===== セクション ===== */
     .profile {
       border: 10px solid gray;
-      border-radius: 8px;
+      border-radius: 24px;
       padding: 16px;
       margin-bottom: 8px;
-      background-image: url(background.jpg);
+      /* background-image: url(background.jpg); */
+      background-color: rgba(205, 194, 245, 0.917);
       text-align: center;
     }
 
@@ -46,7 +47,9 @@
       margin-right: 12px;
 
       border-radius: 30%;
-      background: #ece5dc;
+      border: 1px solid rgba(4, 100, 34, 0.626);
+      /* background: #ece5dc; */
+      background: #c8f2e8;
       color: #333333ed;
 
       transition:
@@ -80,10 +83,12 @@
     }
 
     .portfolio {
-      border: 5px solid green;
+      border: 5px solid rgb(94, 90, 7);
+      border-radius: 24px;
       padding: 16px;
       margin-bottom: 16px;
-      background-image: url(background2.jpg);
+      /* background-image: url(background2.jpg); */
+      background-color: #e9e5c4;
     }
 
     .info {
@@ -167,10 +172,11 @@
     </section>
 
     <section class="portfolio">
-      <h1 class="font-marugothic">活動情報</h1>
+      <h1 class="font-marugothic">Information</h1>
 
       <h2 class="font-marugothic">各種アカウント</h2>
 
+      <div class="info">
         <div class="sns-icons">
           <a href="https://x.com/Ulysses_NoR" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-x-twitter"></i>
@@ -188,21 +194,22 @@
             <i class="fa-brands fa-tiktok"></i>
           </a>
         </div>
+      </div>
 
 
-
-      <h2 class="font-marugothic">進捗等</h2>
-
-      <p class="info">
-        『ボカコレ2026冬』へのMV制作完了！<br>
-        "黎明敗残兵♡あーしら"サブスク配信に向けて準備中！<br>
-        (2026/1/10 更新)
-      </p>
+      <h2 class="font-marugothic">ステータス (2026/1/13 update)</h2>
+      <div class="info">
+        <p class="info_content">
+          『ボカコレ2026冬』へのMV制作完了！<br>
+          "黎明敗残兵♡あーしら" 2026/1/25 サブスク配信予定！
+        </p>
+      </div>
 
       <h1 class="font-marugothic">
-        楽曲ポートフォリオ(新しい順)
+        ポートフォリオ(新しい順)
       </h1>
 
+      <div class="info">
       <section class="MV">
         <h3>"黎明敗残兵♡あーしら" feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
         <iframe
@@ -298,7 +305,7 @@
           allowfullscreen>
         </iframe>
       </section>
-
+      </div>
     </section>
   </div>
 
