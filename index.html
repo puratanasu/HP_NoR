@@ -27,7 +27,7 @@
 
     /* ===== セクション ===== */
     .profile {
-      border: 10px solid gray;
+      border: 5px solid rgb(134, 6, 170);
       border-radius: 24px;
       padding: 16px;
       margin-bottom: 8px;
@@ -103,14 +103,39 @@
     .nametitle {
       font-size: 0.7em;
     }
+    
 
-    .MV {
-      margin-bottom: 48px;
+    .mv-slider {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 12px;
     }
 
+    .MV {
+      flex: 0 0 460px;           /* カード幅 */
+      scroll-snap-align: start;
+      background: rgba(0,0,0,.05);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .mv-slider::-webkit-scrollbar {
+      height: 6px;
+    }
+    .mv-slider::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
+
+    /* .MV {
+      margin-bottom: 48px;
+    } */
+
     .MV iframe {
-      width: 560px;
-      height: 315px;
+      width: 480px;
+      height: 270px;
     }
 
     /* ===== フォント指定（<font> の代替） ===== */
@@ -129,8 +154,8 @@
       }
 
       .MV iframe {
-        width: 320px;
-        height: 180px;
+        width: 240px;
+        height: 135px;
       }
     }
   </style>
@@ -210,8 +235,9 @@
       </h1>
 
       <div class="info">
+      <div class="mv-slider">
       <section class="MV">
-        <h3>"黎明敗残兵♡あーしら" feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
+        <h3>"黎明敗残兵♡あーしら" <br> feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
         <iframe
           src="https://www.youtube.com/embed/wLZu99HHobQ"
           title="YouTube video player"
@@ -223,7 +249,7 @@
       </section>
 
       <section class="MV">
-        <h3>"Messy Queen" feat. 初音ミク, 鏡音リン</h3>
+        <h3>"Messy Queen" <br> feat. 初音ミク, 鏡音リン</h3>
         <iframe
           src="https://www.youtube.com/embed/mLoa362nIaU"
           title="YouTube video player"
@@ -235,7 +261,7 @@
       </section>
 
       <section class="MV">
-        <h3>"はれーしょんせかい" feat. 初音ミク</h3>
+        <h3>"はれーしょんせかい" <br> feat. 初音ミク</h3>
         <iframe
           src="https://www.youtube.com/embed/Lez3n-k8-jA"
           title="YouTube video player"
@@ -247,7 +273,7 @@
       </section>
 
       <section class="MV">
-        <h3>"生存戦略" feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
+        <h3>"生存戦略" <br> feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
         <iframe
           src="https://www.youtube.com/embed/i6-LLWJY5w8"
           title="YouTube video player"
@@ -259,7 +285,7 @@
       </section>
 
       <section class="MV">
-        <h3>"トラッシュメーカー" feat. 初音ミク</h3>
+        <h3>"トラッシュメーカー" <br> feat. 初音ミク</h3>
         <iframe
           src="https://www.youtube.com/embed/OYH1UJm4JVM"
           title="YouTube video player"
@@ -271,7 +297,7 @@
       </section>
 
       <section class="MV">
-        <h3>"Ranunculus" feat. 初音ミク</h3>
+        <h3>"Ranunculus" <br> feat. 初音ミク</h3>
         <iframe
           src="https://www.youtube.com/embed/EFAirRx3ZAg"
           title="YouTube video player"
@@ -283,7 +309,7 @@
       </section>
 
       <section class="MV">
-        <h3>"天気雨とグングニル" feat. 初音ミク</h3>
+        <h3>"天気雨とグングニル" <br> feat. 初音ミク</h3>
         <iframe
           src="https://www.youtube.com/embed/3vew4fQAlOQ"
           title="YouTube video player"
@@ -295,7 +321,7 @@
       </section>
 
       <section class="MV">
-        <h3>"トピック" feat. 知声</h3>
+        <h3>"トピック" <br> feat. 知声</h3>
         <iframe
           src="https://www.youtube.com/embed/AXPhNQzctGo"
           title="YouTube video player"
@@ -305,6 +331,7 @@
           allowfullscreen>
         </iframe>
       </section>
+      </div>
       </div>
     </section>
   </div>
