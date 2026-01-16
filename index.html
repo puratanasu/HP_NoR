@@ -27,6 +27,7 @@
 
     /* ===== セクション ===== */
     .profile {
+      width: 800px;
       border: 5px solid rgb(134, 6, 170);
       border-radius: 24px;
       padding: 16px;
@@ -66,6 +67,35 @@
         text-shadow 0.2s ease;
     }
 
+    .sns-icons a::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 120%;          /* 上に表示 */
+      left: 50%;
+      transform: translateX(-50%);
+
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+
+      box-shadow:
+        0 0 6px rgba(255,79,216,0.6),
+        0 0 12px rgba(255,79,216,0.4);
+    }
+
+    /* 表示 */
+    .sns-icons a:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
     /* hover 時：丸背景 + ネオン発光 */
     .sns-icons a:hover {
       background: #111;
@@ -91,6 +121,13 @@
       background-color: #e9e5c4;
     }
 
+    .wrapper-info {
+      width: 90%;
+    }
+    .wrapper-portfolio {
+      width: 90%;
+    }
+
     .info {
       background: #dacdac;
       border-left: 4px solid #514103;
@@ -98,6 +135,8 @@
       border-radius: 4px;
       margin-bottom: 40px;
       font-size: 0.95rem;
+      /* width: 960px; */
+      width: 100%;
     }
 
     .nametitle {
@@ -110,11 +149,16 @@
       gap: 16px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      padding-bottom: 12px;
+      /* padding-bottom: 12px; */
+      /* padding-left: 50%; */
+      /* padding-right: 50%; */
+
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .MV {
-      flex: 0 0 460px;           /* カード幅 */
+    .mv-slider .MV {
+      flex: 0 0 460px;
       scroll-snap-align: start;
       background: rgba(0,0,0,.05);
       border-radius: 12px;
@@ -129,19 +173,86 @@
       border-radius: 3px;
     }
 
-    /* .MV {
-      margin-bottom: 48px;
-    } */
-
     .MV iframe {
       width: 480px;
       height: 270px;
     }
 
+    
+
     /* ===== フォント指定（<font> の代替） ===== */
     .font-marugothic {
       font-family: "Hiragino Maru Gothic Pro", "Hiragino Kaku Gothic ProN", sans-serif;
     }
+
+    .card-slider {
+      background-color: #bdeeff;
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      /* scroll-padding: 0 10px; */
+
+      padding-left: 50%;
+      padding-right: 50%;
+      padding-top: 3%;
+      padding-bottom: 10%;
+      /* align-items: center; */
+
+      perspective: 800px; /* 3D奥行き */
+    }
+
+    .card {
+      display: flex;
+      flex: 0 0 1000px;
+      width: 960px;
+      height: 540px;
+
+      background: #8edd95;
+      border-radius: 16px;
+      padding: 16px;
+      margin-left: -80px;
+
+      z-index: 1;
+
+      scroll-snap-align: center;
+
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+      scroll-padding-left: 50%;
+      scroll-padding-right: 50%;
+
+      /* align-items: center; */
+      justify-content: center;     
+    }
+
+    /* 非アクティブ状態 */
+    .card {
+      transform: rotateY(-12deg) scale(0.95);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* 中央に来たカード */
+    .card.is-active {
+      transform: rotateY(0deg) scale(1);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.25);
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      z-index: 1;
+    }
+
+    .card:first-child {
+      margin-left: 0;
+    }
+
+    .card:nth-child(1) { z-index: 10; }
+    .card:nth-child(2) { z-index: 9; }
+    .card:nth-child(3) { z-index: 8; }
+
+
 
     /* ===== レスポンシブ共通 ===== */
     @media screen and (max-width: 600px) {
@@ -153,193 +264,262 @@
         width: 100px;
       }
 
-      .MV {
+      .mv-slider .MV {
         flex: 0 0 260px;
+        align-items: center;
       }
 
       .MV iframe {
         width: 240px;
         height: 135px;
       }
+
+      .card-slider {
+        padding-top: 100px;
+        padding-bottom: 100px;
+      }
+
+      .card {
+        flex: 0 0 315px;
+        width: 100%;
+        height: 400px;
+        justify-content: left;
+        margin-left: -40px;
+      }
+
+      .wrapper-portfolio .info {
+        height: 75%;
+        align-items: center;
+      }
+
+      .wrapper-info {
+        width: 90%;
+      }
+      .wrapper-portfolio {
+        width: 90%;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="card-slider">
 
-    <section class="profile">
-      <img src="icon_NoR.PNG" alt="NoR(のあ)のアイコン">
+    <section class="card">
+      <section class="profile">
+        <img src="icon_NoR.PNG" alt="NoR(のあ)のアイコン">
 
-      <h1 class="font-marugothic">
-        NoR(のあ) <span class="nametitle">/ ボカロP</span>
-      </h1>
+        <h1 class="font-marugothic">
+          NoR(のあ) <span class="nametitle">/ ボカロP</span>
+        </h1>
 
-      <h5>ﾂﾖくてkawaE_Music ﾌｧｯｷﾝ丁寧cutism</h5>
+        <h5>ﾂﾖくてkawaE_Music ﾌｧｯｷﾝ丁寧cutism</h5>
 
-      <p>
-        ボカロP NoR(のあ) のホームページです〜<br>
-        活動情報やポートフォリオなどを掲載していますのでご覧ください！
-      </p>
-      <div class="sns-icons">
-          <a href="https://x.com/Ulysses_NoR" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-
-          <a href="https://m.youtube.com/channel/UCBbDvZrydiakmAz2fgfx97w" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-
-          <a href="https://www.nicovideo.jp/user/118189827" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-tv"></i>
-          </a>
-
-          <a href="https://www.tiktok.com/@nor_ulysses" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-        </div>
-    </section>
-
-    <section class="portfolio">
-      <h1 class="font-marugothic">Information</h1>
-
-      <h2 class="font-marugothic">各種アカウント</h2>
-
-      <div class="info">
-        <div class="sns-icons">
-          <a href="https://x.com/Ulysses_NoR" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-x-twitter"></i>
-          </a>
-
-          <a href="https://m.youtube.com/channel/UCBbDvZrydiakmAz2fgfx97w" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-youtube"></i>
-          </a>
-
-          <a href="https://www.nicovideo.jp/user/118189827" target="_blank" rel="noopener noreferrer">
-            <i class="fa-solid fa-tv"></i>
-          </a>
-
-          <a href="https://www.tiktok.com/@nor_ulysses" target="_blank" rel="noopener noreferrer">
-            <i class="fa-brands fa-tiktok"></i>
-          </a>
-        </div>
-      </div>
-
-
-      <h2 class="font-marugothic">ステータス (2026/1/13 update)</h2>
-      <div class="info">
-        <p class="info_content">
-          『ボカコレ2026冬』へのMV制作完了！<br>
-          "黎明敗残兵♡あーしら" 2026/1/25 サブスク配信予定！
+        <p>
+          ボカロP NoR(のあ) のホームページです〜<br>
+          活動情報やポートフォリオなどを掲載していますのでご覧ください！
         </p>
-      </div>
+        <div class="sns-icons">
+            <a href="https://x.com/Ulysses_NoR" target="_blank" rel="noopener noreferrer" data-label="X (旧Twitter)">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
 
-      <h1 class="font-marugothic">
-        ポートフォリオ(新しい順)
-      </h1>
+            <a href="https://m.youtube.com/channel/UCBbDvZrydiakmAz2fgfx97w" target="_blank" rel="noopener noreferrer" data-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
 
-      <div class="info">
-      <div class="mv-slider">
-      <section class="MV">
-        <h3>"黎明敗残兵♡あーしら" <br> feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
-        <iframe
-          src="https://www.youtube.com/embed/wLZu99HHobQ"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+            <a href="https://www.nicovideo.jp/user/118189827" target="_blank" rel="noopener noreferrer" data-label="niconico">
+              <i class="fa-solid fa-tv"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@nor_ulysses" target="_blank" rel="noopener noreferrer" data-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+          <!-- <h1 style="padding-bottom: 10%;">Scroll!→</h1> -->
       </section>
-
-      <section class="MV">
-        <h3>"Messy Queen" <br> feat. 初音ミク, 鏡音リン</h3>
-        <iframe
-          src="https://www.youtube.com/embed/mLoa362nIaU"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-
-      <section class="MV">
-        <h3>"はれーしょんせかい" <br> feat. 初音ミク</h3>
-        <iframe
-          src="https://www.youtube.com/embed/Lez3n-k8-jA"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-
-      <section class="MV">
-        <h3>"生存戦略" <br> feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
-        <iframe
-          src="https://www.youtube.com/embed/i6-LLWJY5w8"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-
-      <section class="MV">
-        <h3>"トラッシュメーカー" <br> feat. 初音ミク</h3>
-        <iframe
-          src="https://www.youtube.com/embed/OYH1UJm4JVM"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-
-      <section class="MV">
-        <h3>"Ranunculus" <br> feat. 初音ミク</h3>
-        <iframe
-          src="https://www.youtube.com/embed/EFAirRx3ZAg"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-
-      <section class="MV">
-        <h3>"天気雨とグングニル" <br> feat. 初音ミク</h3>
-        <iframe
-          src="https://www.youtube.com/embed/3vew4fQAlOQ"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-
-      <section class="MV">
-        <h3>"トピック" <br> feat. 知声</h3>
-        <iframe
-          src="https://www.youtube.com/embed/AXPhNQzctGo"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </section>
-      </div>
-      </div>
     </section>
+
+    <!-- <section class="portfolio"> -->
+      <section class="card">
+        <div class="wrapper-info">
+          <h1 class="font-marugothic">Information</h1>
+
+          <h2 class="font-marugothic">各種アカウント</h2>
+
+          <div class="info">
+            <div class="sns-icons">
+              <a href="https://x.com/Ulysses_NoR" target="_blank" rel="noopener noreferrer" data-label="X (旧Twitter)">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+
+              <a href="https://m.youtube.com/channel/UCBbDvZrydiakmAz2fgfx97w" target="_blank" rel="noopener noreferrer" data-label="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+
+              <a href="https://www.nicovideo.jp/user/118189827" target="_blank" rel="noopener noreferrer" data-label="niconico">
+                <i class="fa-solid fa-tv"></i>
+              </a>
+
+              <a href="https://www.tiktok.com/@nor_ulysses" target="_blank" rel="noopener noreferrer" data-label="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+              </a>
+            </div>
+          </div>
+
+          <h2 class="font-marugothic">ステータス (2026/1/13 update)</h2>
+          <div class="info">
+            <p class="info_content">
+              『ボカコレ2026冬』に向けたMV制作完了！<br>
+              "黎明敗残兵♡あーしら" 2026/1/25 サブスク配信予定！
+            </p>
+          </div>
+          <!-- <h1 style="text-align: center;">Scroll!→</h1> -->
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="wrapper-portfolio">
+          <h1 class="font-marugothic">
+            Portfolio
+          </h1>
+
+          <div class="info">
+            <div class="mv-slider">
+              <section class="MV">
+                <h3>"黎明敗残兵♡あーしら" <br> feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/wLZu99HHobQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"Messy Queen" <br> feat. 初音ミク, 鏡音リン</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/mLoa362nIaU"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"はれーしょんせかい" <br> feat. 初音ミク</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/Lez3n-k8-jA"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"生存戦略" <br> feat. 初音ミク, 鏡音リン, 鏡音レン</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/i6-LLWJY5w8"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"トラッシュメーカー" <br> feat. 初音ミク</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/OYH1UJm4JVM"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"Ranunculus" <br> feat. 初音ミク</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/EFAirRx3ZAg"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"天気雨とグングニル" <br> feat. 初音ミク</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/3vew4fQAlOQ"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+
+              <section class="MV">
+                <h3>"トピック" <br> feat. 知声</h3>
+                <iframe
+                  src="https://www.youtube.com/embed/AXPhNQzctGo"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </section>
+            </div>
+            <!-- <h1 style="text-align: center;">Scroll!→</h1> -->
+          </div>
+        </div>
+      </section>
+    <!-- </section> -->
+
+    <!-- <div class="card-slider">
+      <section class="card">A</section>
+      <section class="card">B</section>
+      <section class="card">C</section>
+    </div> -->
+
   </div>
 
   <footer>(c) NoR(のあ)</footer>
 </body>
+
+  <script>
+  const slider = document.querySelector('.card-slider');
+  const cards  = Array.from(slider.children);
+
+  function updateActiveCard() {
+    const center = slider.scrollLeft + slider.clientWidth / 2;
+
+    cards.forEach(card => {
+      const cardCenter =
+        card.offsetLeft + card.offsetWidth / 2;
+
+      if (Math.abs(center - cardCenter) < card.offsetWidth / 2) {
+        card.classList.add('is-active');
+      } else {
+        card.classList.remove('is-active');
+      }
+    });
+  }
+
+  slider.addEventListener('scroll', updateActiveCard);
+  window.addEventListener('load', updateActiveCard);
+  </script>
+
 </html>
