@@ -1,0 +1,1013 @@
+/* =========================================================
+   基本
+========================================================= */
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+footer {
+  background-color: #c8f2e8;
+  box-sizing: border-box;
+}
+
+.container {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.font-marugothic {
+  font-family:
+    "Hiragino Maru Gothic Pro",
+    "Hiragino Kaku Gothic ProN",
+    sans-serif;
+}
+
+.scroll {
+  padding-left: 80%;
+}
+
+/* =========================================================
+   画像
+========================================================= */
+
+img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   セクション
+========================================================= */
+
+.wrapper-profile {
+  width: 800px;
+  max-width: 90%;
+  border: 5px solid rgb(94, 90, 7);
+  border-radius: 24px;
+  padding: 16px;
+  margin-bottom: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.wrapper-info {
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.wrapper-portfolio {
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.info {
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background: #dacdac;
+  border-left: 4px solid #514103;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.nametitle {
+  font-size: 0.7em;
+}
+
+
+/* =========================================================
+   SNS ICON
+========================================================= */
+
+.sns-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 12px;
+}
+
+.sns-icons a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 44px;
+
+  width: 44px;
+  height: 44px;
+
+  margin-right: 0;
+
+  border-radius: 30%;
+  border: 1px solid rgba(4, 100, 34, 0.626);
+
+  background: #c8f2e8;
+  color: #333333ed;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sns-icons i {
+  font-size: 24px;
+
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.sns-icons a::after {
+  content: attr(data-label);
+
+  position: absolute;
+
+  bottom: 120%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+
+  font-size: 12px;
+
+  padding: 4px 8px;
+
+  border-radius: 6px;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  box-shadow:
+    0 0 6px rgba(255, 79, 216, 0.6),
+    0 0 12px rgba(255, 79, 216, 0.4);
+}
+
+.sns-icons a:hover::after {
+  opacity: 1;
+
+  transform:
+    translateX(-50%)
+    translateY(-4px);
+}
+
+.sns-icons a:hover {
+  background: #111;
+
+  transform:
+    translateY(-2px)
+    scale(2);
+
+  box-shadow:
+    0 0 6px rgba(255, 79, 216, 0.6),
+    0 0 14px rgba(255, 79, 216, 0.4);
+}
+
+.sns-icons a:hover i {
+  color: #ff4fd8;
+
+  text-shadow:
+    0 0 6px rgba(255, 79, 216, 0.9),
+    0 0 12px rgba(255, 79, 216, 0.7);
+}
+
+
+/* =========================================================
+   MV SLIDER
+========================================================= */
+
+.mv-slider {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  padding: 20% 0;
+
+  box-sizing: border-box;
+
+  touch-action: pan-y;
+}
+
+.mv-slider .MV {
+
+  flex: 0 0 auto;
+
+  width: 460px;
+
+  box-sizing: border-box;
+
+  padding: 12px;
+
+  background: rgba(0, 0, 0, 0.05);
+
+  border-radius: 12px;
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform:
+
+    translate(-50%, -50%)
+
+    scale(0.85);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+
+    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+
+    opacity 0.5s ease;
+
+  z-index: 1;
+
+}
+
+/* =========================================================
+
+   中央のアクティブ動画
+
+   ========================================================= */
+
+.mv-slider .MV.mv-active {
+
+  transform:
+
+    translate(-50%, -50%)
+
+    translateX(0)
+
+    scale(1);
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  z-index: 10;
+
+}
+
+/* =========================================================
+
+   左
+
+   ========================================================= */
+
+.mv-slider .MV.mv-prev {
+
+  transform:
+
+    translate(-50%, -50%)
+
+    translateX(-520px)
+
+    scale(0.85);
+
+  opacity: 0.65;
+
+  pointer-events: auto;
+
+  z-index: 5;
+
+}
+
+/* =========================================================
+
+   右
+
+   ========================================================= */
+
+.mv-slider .MV.mv-next {
+
+  transform:
+
+    translate(-50%, -50%)
+
+    translateX(520px)
+
+    scale(0.85);
+
+  opacity: 0.65;
+
+  pointer-events: auto;
+
+  z-index: 5;
+
+}
+
+/* =========================================================
+
+   iframe
+
+   ========================================================= */
+
+.MV iframe {
+
+  display: block;
+
+  width: 480px;
+
+  height: 270px;
+
+  max-width: 100%;
+
+  border: 0;
+
+}
+
+
+
+/* =========================================================
+   3D CARD STACK
+========================================================= */
+
+.card-slider {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 620px;
+
+  overflow: hidden;
+
+  perspective: 1400px;
+
+  box-sizing: border-box;
+
+  isolation: isolate;
+
+  background-color: #e8fcd2;
+
+  touch-action: pan-y;
+}
+
+.card {
+  position: absolute;
+
+  left: 50%;
+  top: 40px;
+
+  width: min(1000px, 90vw);
+  height: 540px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #e9e5c4;
+
+  border-radius: 16px;
+
+  padding: 16px;
+
+  transform-origin: left bottom;
+
+  transform-style: preserve-3d;
+
+  backface-visibility: hidden;
+
+  transition:
+    transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.65s ease,
+    box-shadow 0.65s ease;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15);
+
+  flex-shrink: 0;
+
+  transform:
+    translateX(-50%)
+    translateY(0)
+    translateZ(0)
+    rotateY(0deg)
+    scale(1);
+
+  z-index: 1;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD STATE
+========================================================= */
+
+.card.card-front {
+  transform:
+    translateX(-50%)
+    translateY(0)
+    translateZ(120px)
+    rotateY(0deg)
+    scale(1);
+
+  opacity: 1;
+
+  z-index: 100;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+.card.card-second {
+  transform:
+    translateX(-50%)
+    translateY(50px)
+    translateZ(0)
+    rotateY(-7deg)
+    scale(0.96);
+
+  opacity: 0.95;
+
+  z-index: 90;
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.20);
+}
+
+.card.card-back {
+  transform:
+    translateX(-50%)
+    translateY(100px)
+    translateZ(-100px)
+    rotateY(-12deg)
+    scale(0.92);
+
+  opacity: 0.85;
+
+  z-index: 80;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.14);
+}
+
+.card.card-hidden {
+  transform:
+    translateX(-50%)
+    translateY(150px)
+    translateZ(-180px)
+    rotateY(-15deg)
+    scale(0.88);
+
+  opacity: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.card.card-leaving-next {
+  transform:
+    translateX(-50%)
+    translateY(0)
+    rotate(-90deg)
+    scale(0.95);
+
+  opacity: 0;
+
+  z-index: 200;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+.card.card-leaving-prev {
+  transform:
+    translateX(-50%)
+    translateY(0)
+    rotate(90deg)
+    scale(0.95);
+
+  opacity: 0;
+
+  z-index: 200;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   操作中
+========================================================= */
+
+.card-slider.is-moving {
+  cursor: grabbing;
+}
+
+.card-slider.is-moving .card {
+  pointer-events: none;
+}
+
+.card-front .MV,
+.card-front a {
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   PC
+========================================================= */
+
+@media screen and (min-width: 601px) {
+
+  .card.card-front {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      translateZ(120px)
+      rotateY(0deg)
+      scale(1);
+  }
+
+  .card.card-second {
+    transform:
+      translateX(-50%)
+      translateY(50px)
+      translateZ(0)
+      rotateY(-7deg)
+      scale(0.96);
+  }
+
+  .card.card-back {
+    transform:
+      translateX(-50%)
+      translateY(100px)
+      translateZ(-100px)
+      rotateY(-12deg)
+      scale(0.92);
+  }
+
+  .card.card-hidden {
+    transform:
+      translateX(-50%)
+      translateY(150px)
+      translateZ(-180px)
+      rotateY(-15deg)
+      scale(0.88);
+  }
+}
+
+
+/* =========================================================
+   スマホ
+========================================================= */
+
+@media screen and (max-width: 600px) {
+
+  html {
+    font-size: 12px;
+  }
+
+  img {
+    width: 100px;
+  }
+
+
+  /* -------------------------------------------------------
+     MV slider
+  ------------------------------------------------------- */
+
+  /*
+
+   * MV全体を横スクロール領域にする
+
+   *
+
+   * iframeだけでなく、
+
+   * タイトル・説明部分を触っても
+
+   * MVスライダーを操作できるようにする。
+
+   */
+
+  .mv-slider {
+    position: relative;
+
+    width: 100%;
+    min-height: 330px;
+    overflow-x: auto;
+
+    display: block;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    touch-action: pan-y;
+
+    padding: 150px 0;
+
+  }
+
+  /* =========================================================
+
+   MV
+
+   ========================================================= */
+
+.mv-slider .MV {
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  width: 460px;
+
+  box-sizing: border-box;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.05);
+
+  border-radius: 12px;
+
+  /*
+
+   * すべての動画を
+
+   * まず中央に置く。
+
+   */
+
+  transform:
+
+    translate(-50%, -50%)
+
+    translateX(0)
+
+    scale(0.85);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+
+    transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1),
+
+    opacity 0.5s ease;
+
+  z-index: 1;
+
+}
+
+/*
+
+   * アクティブ
+
+   */
+
+  .mv-slider .MV.mv-active {
+
+    transform:
+
+      translate(-50%, -50%)
+
+      translateX(0)
+
+      scale(1);
+
+    opacity: 1;
+
+  }
+
+  /*
+
+   * 前の動画
+
+   * ← 左
+
+   */
+
+  .mv-slider .MV.mv-prev {
+
+    transform:
+
+      translate(-50%, -50%)
+
+      translateX(-75vw)
+
+      scale(0.82);
+
+    opacity: 0.5;
+
+  }
+
+  /*
+
+   * 次の動画
+
+   * → 右
+
+   */
+
+  .mv-slider .MV.mv-next {
+
+    transform:
+
+      translate(-50%, -50%)
+
+      translateX(75vw)
+
+      scale(0.82);
+
+    opacity: 0.5;
+
+  }
+
+  .MV iframe {
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    height: auto;
+
+  }
+
+
+  /* -------------------------------------------------------
+     Card slider
+  ------------------------------------------------------- */
+
+  .card-slider {
+    min-height: 500px;
+
+    padding-top: 20px;
+    padding-bottom: 80px;
+
+    perspective: 1000px;
+
+    width: 100%;
+
+    overflow: hidden;
+  }
+
+
+  /* -------------------------------------------------------
+     Card
+  ------------------------------------------------------- */
+
+  .card {
+    top: 50px;
+
+    /*
+     * 画面幅から左右30pxずつだけ引く。
+     *
+     * 元の
+     * calc(100vw - 100px)
+     * だとカード内部が狭くなりすぎる。
+     */
+    width: calc(100vw - 100px);
+
+    height: 60vh;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+  }
+
+
+  /* -------------------------------------------------------
+     SNS
+  ------------------------------------------------------- */
+
+  .sns-icons {
+    /*
+     * 4個を必ず横一列にする。
+     */
+    display: flex;
+
+    flex-wrap: nowrap;
+
+    gap: 8px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+  .sns-icons a {
+    /*
+     * スマホでは少し小さくする。
+     */
+    flex: 0 0 38px;
+
+    width: 38px;
+    height: 38px;
+
+    margin-right: 0;
+  }
+
+  .sns-icons i {
+    font-size: 20px;
+  }
+
+
+  /* -------------------------------------------------------
+     Information / Portfolio wrapper
+  ------------------------------------------------------- */
+
+  .wrapper-profile {
+    width: 90%;
+    max-width: none;
+
+    box-sizing: border-box;
+  }
+
+  .wrapper-info,
+  .wrapper-portfolio {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    min-width: 0;
+  }
+
+  .wrapper-portfolio .info,
+  .wrapper-info .info {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    min-width: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     Portfolio
+  ------------------------------------------------------- */
+
+  .wrapper-portfolio .mv-slider {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+  }
+
+  .wrapper-portfolio .MV {
+    width: 100%;
+    max-width: 100%;
+
+    min-width: 0;
+
+    flex: 0 0 100%;
+
+    box-sizing: border-box;
+  }
+
+  .wrapper-portfolio .MV iframe {
+    width: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+
+    aspect-ratio: 16 / 9;
+
+    height: auto;
+  }
+
+
+  /* -------------------------------------------------------
+     Card position
+     後ろのカードを右へ
+  ------------------------------------------------------- */
+
+  .card.card-front {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      translateZ(80px)
+      rotateY(0deg)
+      scale(1);
+  }
+
+  .card.card-second {
+    transform:
+      translateX(calc(-50% + 40px))
+      translateY(0)
+      translateZ(0)
+      rotateY(-6deg)
+      scale(0.95);
+  }
+
+  .card.card-back {
+    transform:
+      translateX(calc(-50% + 80px))
+      translateY(0)
+      translateZ(-70px)
+      rotateY(-10deg)
+      scale(0.90);
+  }
+
+  .card.card-hidden {
+    transform:
+      translateX(calc(-50% + 110px))
+      translateY(0)
+      translateZ(-120px)
+      rotateY(-12deg)
+      scale(0.86);
+  }
+
+
+  /* -------------------------------------------------------
+     Card leaving
+  ------------------------------------------------------- */
+
+  .card.card-leaving-next {
+
+    transform:
+
+      translateX(-50%)
+
+      translateY(0)
+
+      rotate(-50deg)
+
+      scale(0.90);
+
+    opacity: 0;
+
+    z-index: 200;
+
+    pointer-events: none;
+
+  }
+
+  .card.card-leaving-prev {
+
+    transform:
+
+      translateX(-50%)
+
+      translateY(0)
+
+      rotate(50deg)
+
+      scale(0.90);
+
+    opacity: 0;
+
+    z-index: 200;
+
+    pointer-events: none;
+
+  }
+}
